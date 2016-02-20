@@ -4,4 +4,14 @@ class RestaurantPolicy < ApplicationPolicy
     base_attributes + [users_attributes: %i(email password)] if admin?
     base_attributes
   end
+
+  class Scope
+    def resolve
+      if admin?
+      	scope.all
+      else
+      	scope.where(id: user&.restaurant_id)
+      end
+    end
+  end
 end 
