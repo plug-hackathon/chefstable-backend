@@ -3,6 +3,11 @@ class OpeningHoursController < ApplicationController
 
 	def index
 		@opening_hours = policy_scope(OpeningHour)
+
+		if params[:restaurant_id].present?
+			@opening_hours = @opening_hours.where(restaurant_id: params[:restaurant_id])
+		end 
+		
 		render json: @opening_hours
 	end
 
