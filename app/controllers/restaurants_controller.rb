@@ -12,7 +12,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = Restaurant.new
+    @restaurant.attributes = restaurant_params
     authorize @restaurant
     if @restaurant.save
       render json: @restaurant
@@ -39,7 +40,7 @@ class RestaurantsController < ApplicationController
   end
 
   private def restaurant_params 
-    params.require(:restaurant).permit(:name, :time_zone)
+    params.require(:restaurant).permit(policy(@restaurant).permitted_attributes)
   end
 
   private def set_restaurant 
