@@ -1,5 +1,5 @@
 class OpeningHoursController < ApplicationController
-	before_action :set_post, except: %i(index create)
+	before_action :set_opening_hour, except: %i(index create)
 
 	def index
 		@opening_hours = policy_scope(OpeningHour)
