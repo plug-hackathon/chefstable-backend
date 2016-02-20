@@ -12,7 +12,8 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new
+    @booking.attributes = booking_params
     authorize @booking
     if @booking.save
       render json: @booking
@@ -39,7 +40,7 @@ class BookingsController < ApplicationController
   end
 
   private def booking_params
-    params.require(:booking).permit(:name, :phone_number, :number_of_persons, :starts_at)
+    params.require(:booking).permit(policy(@booking).permitted_attributes)
   end
 
   private def set_booking

@@ -5,7 +5,7 @@ class RestaurantsControllerTest < ActionController::TestCase
   #   assert true
   # end
   def test_create_restaurant_as_admin
-    sign_in users(:admin)
+    sign_in_basic users(:admin)
 
     assert_difference "Restaurant.count" do
       post :create, restaurant: {

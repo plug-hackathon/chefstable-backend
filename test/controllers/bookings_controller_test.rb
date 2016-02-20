@@ -7,7 +7,8 @@ class BookingsControllerTest < ActionController::TestCase
         name: "Mikael Anka",
         phone_number: "070 123 45 87",
         number_of_persons: 4,
-        starts_at: "2016-09-20 15:00:00 +0100"
+        starts_at: "2016-09-20 15:00:00 +0100",
+        restaurant_id: restaurants(:one).id
       }
       assert_response :success
     end
