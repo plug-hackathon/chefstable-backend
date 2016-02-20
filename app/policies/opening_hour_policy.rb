@@ -1,0 +1,2 @@
+class OpeningHourPolicy < ApplicationPolicy
+end 
