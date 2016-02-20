@@ -1,6 +1,6 @@
 class OpeningHour < ActiveRecord::Base
 	TIME_FORMAT = %r(\A\d{2}:\d{2}\z)
-	enum week_day: %w( Monday Tuesday Wednesday Thursday Friday Saturday Sunday )
+	enum week_day: %w( monday tuesday wednesday thursday friday saturday sunday )
   
   belongs_to :restaurant
 
