@@ -11,7 +11,7 @@ gem 'pg'
 
 # ActiveModelSerializers brings convention over configuration to your JSON
 # generation.
-gem "active_model_serializers"
+gem "active_model_serializers", "~> 0.10.0.rc4"
 
 # Minimal authorization through OO design and pure Ruby classes
 gem "pundit"

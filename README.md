@@ -40,4 +40,3 @@ You may need to run
 docker exec rails-server rake db:create  # If this is the first deployment of your stack
 docker exec rails-server rake db:migrate # If database needs to be migrated
 ```
-
