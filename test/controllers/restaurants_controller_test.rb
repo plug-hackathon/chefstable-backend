@@ -29,4 +29,22 @@ class RestaurantsControllerTest < ActionController::TestCase
       assert_response :unauthorized
     end
   end
+
+  def test_create_user_with_restaurant
+    sign_in_basic users(:admin)
+
+    assert_difference "User.count" do
+      post :create, restaurant: {
+        name: "Kalles kök",
+        time_zone: "UTC",
+        users_attributes: [{
+          email: "kalle@example.com",
+          password: "password"
+        }]
+      }
+      assert_response :success
+    end
+
+    assert_equal "kalle@example.com", User.last.email
+  end
 end
