@@ -3,6 +3,11 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = policy_scope(Booking)
+
+    if params[:restaurant_id].present?
+      @bookings = @bookings.where(restaurant_id: params[:restaurant_id])
+    end
+
     render json: @bookings
   end
 
