@@ -43,7 +43,7 @@ class OpeningHoursController < ApplicationController
 	end
 
 	private def opening_hour_params
-		params.require(:opening_hour).require(:week_day, :from_time, :to_time, :restaurant_id)
+		params.require(:opening_hour).permit(:week_day, :from_time, :to_time, :restaurant_id)
 	end
 
 	def set_opening_hour
