@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160220212038) do
-=======
-ActiveRecord::Schema.define(version: 20160220191058) do
->>>>>>> 8ecb021efc3147dfd23739b5717bd97b09160502
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,9 +80,6 @@ ActiveRecord::Schema.define(version: 20160220191058) do
 
   add_foreign_key "bookings", "restaurants"
   add_foreign_key "opening_hours", "restaurants"
-<<<<<<< HEAD
   add_foreign_key "restricted_hours", "restaurants"
-=======
   add_foreign_key "users", "restaurants"
->>>>>>> 8ecb021efc3147dfd23739b5717bd97b09160502
 end
