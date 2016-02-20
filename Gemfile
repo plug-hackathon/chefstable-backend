@@ -7,22 +7,19 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
-
 gem 'pg'
 
+# ActiveModelSerializers brings convention over configuration to your JSON
+# generation.
+gem "active_model_serializers"
 
+# Minimal authorization through OO design and pure Ruby classes
+gem "pundit"
+
+
+# Flexible authentication solution for Rails with Warden.
+# http://blog.plataformatec.com.br/tag/devise/
+gem "devise"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
