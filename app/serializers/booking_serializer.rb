@@ -1,3 +1,3 @@
 class BookingSerializer < ActiveModel::Serializer
-  attributes :id, :name, :phone_number, :number_of_persons, :stars_at, :state
+  attributes :id, :name, :phone_number, :number_of_persons, :starts_at, :state
 end
