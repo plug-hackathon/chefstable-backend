@@ -4,6 +4,7 @@ class OpeningHourTest < ActiveSupport::TestCase
   
   def test_valid_from_time
   	openinghour = OpeningHour.new
+    openinghour.week_day = 0
   	openinghour.from_time = "18:00"
   	openinghour.to_time = "22:00"
   	assert openinghour.valid?
@@ -15,6 +16,7 @@ class OpeningHourTest < ActiveSupport::TestCase
 
   def test_valid_to_time 
   	openinghour = OpeningHour.new
+    openinghour.week_day = 1
   	openinghour.from_time = "18:00"
   	openinghour.to_time = "22:00"
   	assert openinghour.valid?
