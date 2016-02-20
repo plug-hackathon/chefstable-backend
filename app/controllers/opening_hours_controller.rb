@@ -19,6 +19,7 @@ class OpeningHoursController < ApplicationController
 	def create
 		@opening_hour = OpeningHour.new(opening_hour_params)
 		authorize @opening_hour
+		
 		if @opening_hour.save
 			render json: @opening_hour
 		else

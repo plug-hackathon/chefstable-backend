@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_datetime: 2016-02-20 21:20:38
+  to_datetime: 2016-02-20 21:20:38
+  restaurant_id: 
+
+two:
+  from_datetime: 2016-02-20 21:20:38
+  to_datetime: 2016-02-20 21:20:38
+  restaurant_id: 

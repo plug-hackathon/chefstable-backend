@@ -1,0 +1,2 @@
+class RestrictedHourPolicy < ApplicationPolicy
+end 
