@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :set_post, except: %i(index create)
+  before_action :set_restaurant, except: %i(index create)
 
   def index
     @restaurants = policy_scope(Restaurant)
