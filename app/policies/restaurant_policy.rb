@@ -5,12 +5,12 @@ class RestaurantPolicy < ApplicationPolicy
     base_attributes
   end
 
-  class Scope
+  class Scope < Scope
     def resolve
       if admin?
-      	scope.all
+        scope.all
       else
-      	scope.where(id: user&.restaurant_id)
+        scope.where(id: user&.restaurant_id)
       end
     end
   end
