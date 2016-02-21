@@ -19,9 +19,6 @@ class Booking < ActiveRecord::Base
 	 		date = starts_at.strftime("%Y-%m-%d")
   		time = starts_at.strftime("%H:%M")
   		message = I18n.t(state, date: date, time: time, restaurant_name: self.restaurant.name, scope: %i(bookings status_changed_messages))
-  		puts date
-  		puts time
-  		puts message
   		booking = BookingNotification.new
   		booking.message = message
   		booking.sms(phone_number)
