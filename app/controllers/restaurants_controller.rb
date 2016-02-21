@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = policy_scope(Restaurant)
-    render json: @restaurants
+    render json: @restaurants, each_serializer: RestaurantIndexSerializer
   end 
 
   def show 
