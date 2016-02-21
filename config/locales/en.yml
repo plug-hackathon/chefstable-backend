@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  bookings:
+    status_changed_messages:
+      accepted: "Hej! Din bokning hos oss den %{date} kl %{time} är nu bekräftad.\n/%{restaurant_name}"
+      rejected: "Hej! Vi har tyvärr inte plats för er den %{date} kl %{time}.\n/%{restaurant_name}"
+      cancelled: "Hej! Din bokning hos oss den %{date} kl %{time} är nu avbokad.\n/%{restaurant_name}"
