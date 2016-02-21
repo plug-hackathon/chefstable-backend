@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+restaurant_one_first:
   from_datetime: 2016-02-20 21:20:38
   to_datetime: 2016-02-20 21:20:38
-  restaurant_id: 
+  restaurant: one
 
-two:
+restaurant_one_second:
   from_datetime: 2016-02-20 21:20:38
   to_datetime: 2016-02-20 21:20:38
-  restaurant_id: 
+  restaurant: one
+
+restaurant_two_first:
+  from_datetime: 2016-02-20 21:20:38
+  to_datetime: 2016-02-20 21:20:38
+  restaurant: two
+
+restaurant_two_second:
+  from_datetime: 2016-02-20 21:20:38
+  to_datetime: 2016-02-20 21:20:38
+  restaurant: two

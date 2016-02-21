@@ -47,4 +47,34 @@ class RestaurantsControllerTest < ActionController::TestCase
 
     assert_equal "kalle@example.com", User.last.email
   end
+
+  def test_index_restaurants
+    sign_in_basic users(:admin)
+
+    get :index 
+    assert_response :success
+    json = JSON.parse(response.body)
+    
+    restaurant = Restaurant.find(json.first['id'])
+    assert_equal json.first['id'], restaurant.id
+    assert_equal json.first['name'], restaurant.name
+    assert_equal json.first['time_zone'], restaurant.time_zone
+    assert_equal json.first['opening_hours'], nil
+    assert_equal json.first['restricted_hours'], nil
+  end
+
+  def test_show_restaurant
+    get :show, id: restaurants(:one).id 
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    assert_equal json['id'], restaurants(:one).id
+    assert_equal json['name'], restaurants(:one).name
+    assert_equal json['time_zone'], restaurants(:one).time_zone
+    assert_equal json['opening_hours'].count, restaurants(:one).opening_hours.count
+    assert_equal json['restricted_hours'].count, restaurants(:one).restricted_hours.count
+    assert_equal json['bookings'], nil
+    assert_equal json['users'], nil
+  end 
+
 end

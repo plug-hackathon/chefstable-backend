@@ -1,13 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+restaurant_one_first:
   week_day: 1
-  from_time: MyString
-  to_time: MyString
-  restaurant_id: 
+  from_time: 21:00
+  to_time: 23:00
+  restaurant: one
 
-two:
+restaurant_one_second:
+  week_day: 2
+  from_time: 19:00
+  to_time: 21:00
+  restaurant: one
+
+restaurant_two_first:
   week_day: 1
-  from_time: MyString
-  to_time: MyString
-  restaurant_id: 
+  from_time: 21:00
+  to_time: 23:00
+  restaurant: two
+
+restaurant_two_second:
+  week_day: 2
+  from_time: 19:00
+  to_time: 21:00
+  restaurant: two

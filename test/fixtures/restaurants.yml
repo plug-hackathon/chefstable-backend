@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  time_zone: MyString
+  name: Testrestaurang1
+  time_zone: UTC
 
 two:
-  name: MyString
-  time_zone: MyString
+  name: Testrestaurang2
+  time_zone: UTC
