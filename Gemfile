@@ -23,5 +23,8 @@ gem "devise"
 
 gem 'rack-cors', require: 'rack/cors'
 
+# A Ruby gem for communicating with the Twilio API and generating TwiML
+gem 'twilio-ruby', '~> 4.11.1'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
