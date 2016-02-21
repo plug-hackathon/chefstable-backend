@@ -49,6 +49,10 @@ class ApplicationPolicy
     def resolve
       scope.all
     end
+
+    private def admin?
+      !!user&.admin?
+    end
   end
 
   private def admin?
