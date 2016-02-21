@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User)
-    if restaurant_id = params[:restaurant_id].precense 
+    if restaurant_id = params[:restaurant_id].presence
       @users = @users.where restaurant_id: restaurant_id
     end
     render json: @users
