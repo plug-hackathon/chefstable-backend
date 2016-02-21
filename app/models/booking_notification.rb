@@ -6,16 +6,20 @@ class BookingNotification
   end
 
   def sms(phone_number)
-  	if Rails.env.production?	
+  	Rails.logger.debug "Will send SMS, but only in production"
+  	Rails.logger.debug message
+	  Rails.logger.debug phone_number
+
+  	if Rails.production
 	  	client.messages.create(
 	  		from: twilio_number,
 	  		to: phone_number,
 	  		body: message
 	  	)
-	  else
-	  	logger.debug message 
-	  	logger.phone_number
 	  end
+
+  rescue Twilio::REST::RequestError => e
+  	handle_twilio_exception(e)
   end
 
   private def client
@@ -34,5 +38,13 @@ class BookingNotification
 
 	private def twilio_number
 		Rails.application.secrets.twilio_number
+	end
+
+	private def handle_twilio_exception(e)
+		if e.message.include('is not a valid phone number')
+  		true
+  	else
+  		raise e
+  	end
 	end
 end
