@@ -8,7 +8,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    base_attributes = [:name, :phone_number, :number_of_persons, :starts_at, :restaurant_id]
+    base_attributes = [:name, :phone_number, :number_of_persons, :starts_at, :restaurant_id, :email, :message]
 
     if user.nil?
       base_attributes
