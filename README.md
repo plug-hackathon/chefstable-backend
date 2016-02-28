@@ -1,20 +1,37 @@
 ## Deploy to production
 
+### Regular deployment
+
+
+
 ### Build production image if it has changed
 
-Build
+
+Create a file `./deploy_env` and set production secrets and configurations
 
 ```bash
-docker build -t chefstable/rails-server -f ./Dockerfile.production .
+# Example ./deploy_env
+
+
+SECRET_KEY_BASE=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Twilio account
+TWILIO_AUTH_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TWILIO_ACCOUNT_SID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TWILIO_NUMBER="+46000000000"
+
+DOCKER_MACHINE_PRODUCTION_NAME=chefstable_prod
 ```
 
-Push to docker repo
+Now, just run `bin/deploy` and wait for it to complete
 
-```bash
-docker push chefstable/rails-server
-```
+### Initial deployment to new server
 
-### Setup database containers
+Start by tell docker to use the correct environment
+
+Example `eval "$(docker-machine env the_new_chefstable_server)"`
+
+#### Setup database containers
 
 Create a docker container to store the database data
 
@@ -28,15 +45,24 @@ Create the database server
 docker run -d --name db-server --volumes-from db-data postgres:9.5
 ```
 
-### Setup the production rails container
+#### Setup the production rails container
 
 ```bash
-docker run -d --name rails-server --link db-server -p 80:80 -e SECRET_KEY_BASE=`rake secret` chefstable/rails-server
+source deploy_env
+
+docker run -d --name rails-server \
+  --link db-server \
+  -p 80:80 \
+  -e SECRET_KEY_BASE=$SECRET_KEY_BASE \
+  -e TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN \
+  -e TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID \
+  -e TWILIO_NUMBER=$TWILIO_NUMBER \
+  chefstable/rails-server
 ```
 
-You may need to run
+You may also need to run
 
 ```bash
-docker exec rails-server rake db:create  # If this is the first deployment of your stack
+docker exec rails-server rake db:create  # If database is not yet created
 docker exec rails-server rake db:migrate # If database needs to be migrated
 ```
