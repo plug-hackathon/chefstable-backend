@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# CONFIG
+# should be overwritten in ./deploy_env
+#######################################
+
+# Generated using `rake secret`
+SECRET_KEY_BASE=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Twilio account
+TWILIO_AUTH_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TWILIO_ACCOUNT_SID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TWILIO_NUMBER="+46700000000"
+
+DOCKER_MACHINE_PRODUCTION_NAME=chefstable_prod
+
+# END: CONFIG
+
+[ -f ./deploy_env ] && source ./deploy_env
+
+# The dockermachine used when executing this script
+PREVIOUS_DOCKER_MACHINE=`docker-machine active`
+
+echo "INFO: Using docker machin $DOCKER_MACHINE_PRODUCTION_NAME"
+eval "$(docker-machine env $DOCKER_MACHINE_PRODUCTION_NAME)"
+
+echo "=================================================="
+
+echo "INFO: Building production container and uploading it to hub.docker.com"
+docker build -t chefstable/rails-server:$1 -f Dockerfile.production .
+docker push chefstable/rails-server:$1
+
+echo "=================================================="
+
+echo "INFO: Remove old container"
+docker stop rails-server
+docker rm rails-server
+
+echo "=================================================="
+
+echo "INFO: Upload new container to server"
+docker run -d --name rails-server \
+  --link db-server \
+  -p 80:80 \
+  -e SECRET_KEY_BASE=$SECRET_KEY_BASE \
+  -e TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN \
+  -e TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID \
+  -e TWILIO_NUMBER=$TWILIO_NUMBER \
+  chefstable/rails-server:$1
+
+echo "=================================================="
+
+echo "INFO: Migrate database"
+docker exec -t rails-server rake db:migrate
+
+echo "=================================================="
+
+echo "INFO: Current docker processes for chefstable"
+echo "----------------------"
+docker ps
+echo "----------------------"
+
+echo "=================================================="
+
+echo "INFO: Using docker machin default"
+eval "$(docker-machine env $PREVIOUS_DOCKER_MACHINE)"
