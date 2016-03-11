@@ -22,6 +22,7 @@ class Booking < ActiveRecord::Base
       booking = BookingNotification.new
       booking.message = message
       booking.sms(phone_number)
+      booking.send_mail(email)
     end 
   end
 end

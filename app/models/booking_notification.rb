@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class BookingNotification
   attr_accessor :message
 
@@ -20,6 +22,13 @@ class BookingNotification
 
   rescue Twilio::REST::RequestError => e
     handle_twilio_exception(e)
+  end
+
+  def send_mail(email)
+    mailgun_resource("messages").post :from => "Chefstable <mailgun@getchefstable.com>",
+                                      :to => email,
+                                      :subject => "Chefstable bokning",
+                                      :text => message
   end
 
   private def client
@@ -47,4 +56,10 @@ class BookingNotification
       raise e
     end
   end
+
+  private def mailgun_resource(action)
+    RestClient::Resource.new "https://api:#{Rails.application.secrets.mailgun_api_key}"\
+    "@api.mailgun.net/v3/getchefstable.com/#{action}"
+  end
+
 end
