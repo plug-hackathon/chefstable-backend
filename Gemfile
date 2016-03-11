@@ -26,5 +26,8 @@ gem 'rack-cors', require: 'rack/cors'
 # A Ruby gem for communicating with the Twilio API and generating TwiML
 gem 'twilio-ruby', '~> 4.11.1'
 
+# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
+gem 'rest-client', '~> 1.8'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
