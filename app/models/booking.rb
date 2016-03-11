@@ -21,7 +21,7 @@ class Booking < ActiveRecord::Base
       message = I18n.t(state, date: date, time: time, restaurant_name: self.restaurant.name, scope: %i(bookings status_changed_messages))
       booking = BookingNotification.new
       booking.message = message
-      #booking.sms(phone_number)
+      booking.sms(phone_number)
       booking.send_mail(email)
     end 
   end
