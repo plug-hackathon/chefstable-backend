@@ -60,6 +60,7 @@ docker run -d --name rails-server \
   -e TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN \
   -e TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID \
   -e TWILIO_NUMBER=$TWILIO_NUMBER \
+  -e MAILGUN_API_KEY=$MAILGUN_API_KEY \
   chefstable/rails-server
 ```
 
