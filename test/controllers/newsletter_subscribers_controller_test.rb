@@ -12,4 +12,15 @@ class NewsletterSubscribersControllerTest < ActionController::TestCase
     newsletter_subscriber = assigns(:newsletter_subscriber)
     assert_equal json['id'], newsletter_subscriber.id
   end
+
+  def test_delete
+    NewsletterSubscriber.create(id: 1, email: 'test@example.com') 
+    assert_difference "NewsletterSubscriber.count", -1 do 
+      delete :destroy, id: NewsletterSubscriber.last.id 
+    end
+    assert_response :success
+    json = JSON.parse(response.body)
+    newsletter_subscriber = assigns(:newsletter_subscriber)
+    assert_equal json['id'], newsletter_subscriber.id
+  end
 end
