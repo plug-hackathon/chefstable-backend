@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :opening_hours
   resources :restricted_hours
   resources :users
+  resources :newsletter_subscribers
 
   get "auth" => "authorization#check"
 
