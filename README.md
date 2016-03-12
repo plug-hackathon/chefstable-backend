@@ -20,6 +20,9 @@ TWILIO_AUTH_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 TWILIO_ACCOUNT_SID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 TWILIO_NUMBER="+46000000000"
 
+# Mailgun auth
+MAILGUN_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 DOCKER_MACHINE_PRODUCTION_NAME=chefstable_prod
 ```
 
